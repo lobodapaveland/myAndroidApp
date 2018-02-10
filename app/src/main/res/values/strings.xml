@@ -3,4 +3,6 @@
     <string name="nameInputHint">Enter name here</string>
     <string name="passwordInputHint">Enter password here</string>
     <string name="Enter">Войдите в аккаунт</string>
+    <string name="all_fields">Заполните все поля</string>
+    <string name="welkome">Добро пожаловать</string>
 </resources>

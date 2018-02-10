@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
 
-    final String TAG = "ActivityLifeCycle";
+    final String TAG = "MainActivityLifeCycle";
 
     private Button login;
     private EditText name, password;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "MainActivity: onCreate()");
+        Log.d(TAG, "Activity: onCreate()");
 
         login = (Button)findViewById(R.id.loginButton);
         name = (EditText) findViewById(R.id.nameField);
@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 if (checkFields()){
                     changeImage();
-                    Toast.makeText(MainActivity.this, "Добро Пожаловать", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.welkome, Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(MainActivity.this, "Заполните все поля", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.all_fields, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -59,31 +59,31 @@ public class MainActivity extends AppCompatActivity{
 
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "MainActivity: onStart()");
+        Log.d(TAG, "Activity: onStart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "MainActivity: onResume()");
+        Log.d(TAG, "Activity: onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "MainActivity: onPause()");
+        Log.d(TAG, "Activity: onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "MainActivity: onStop()");
+        Log.d(TAG, "Activity: onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "MainActivity: onDestroy()");
+        Log.d(TAG, "Activity: onDestroy()");
     }
 
 }
