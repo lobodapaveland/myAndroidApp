@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity{
         Log.d(TAG, "Activity: onResume()");
     }
 
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("imgId", R.id.imageLock);
+        Log.d(TAG, "onSaveInstanceState: ImgRes Saved");
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -79,7 +85,11 @@ public class MainActivity extends AppCompatActivity{
         super.onStop();
         Log.d(TAG, "Activity: onStop()");
     }
-
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        image.setImageResource(savedInstanceState.getInt("imgId"));
+        Log.d(TAG, "onRestoreInstanceState: Img Viewed");
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
