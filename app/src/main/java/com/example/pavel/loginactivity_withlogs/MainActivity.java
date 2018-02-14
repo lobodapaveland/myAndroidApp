@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity{
     private EditText name, password;
     private ImageView image;
     private TextView enterText;
+    private boolean buttonClick;
+    private int buffImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 if (checkFields()){
                     changeImage();
+                    buttonClick = true;
                     Toast.makeText(MainActivity.this, R.string.welkome, Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(MainActivity.this, R.string.all_fields, Toast.LENGTH_LONG).show();
@@ -70,7 +73,11 @@ public class MainActivity extends AppCompatActivity{
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("imgId", R.id.imageLock);
+        if (buttonClick == true){
+            outState.putInt("imgId", R.drawable.open);
+        }else {
+            outState.putInt("imgId", R.drawable.lock);
+        }
         Log.d(TAG, "onSaveInstanceState: ImgRes Saved");
     }
 
@@ -79,16 +86,17 @@ public class MainActivity extends AppCompatActivity{
         super.onPause();
         Log.d(TAG, "Activity: onPause()");
     }
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG, "" + savedInstanceState.getInt("imgId"));
+        image.setImageResource(savedInstanceState.getInt("imgId"));
+        Log.d(TAG, "onRestoreInstanceState: Img Viewed");
+    }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "Activity: onStop()");
-    }
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        image.setImageResource(savedInstanceState.getInt("imgId"));
-        Log.d(TAG, "onRestoreInstanceState: Img Viewed");
     }
     @Override
     protected void onDestroy() {
